@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>Learning WebGL &mdash; lesson 1</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+    <!-- THE_GL -->
+    <script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+    <!-- UTILS FROM GOOGLE, might be unnecessary -->
+    <script src="webgl-utils.js"></script>
+    
+    <!-- VERTEX SHADER -->
+    <script id="shader-vs" type="x-shader/x-vertex">
+        attribute vec3 aVertexPosition;
+        attribute vec4 aVertexColor;
+
+        uniform mat4 uMVMatrix;
+        uniform mat4 uPMatrix;
+
+        varying vec4 vColor;
+        
+        void main(void) {
+            gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+            vColor = aVertexColor;
+        }
+    </script>
+
+    <!-- FRAGMENT SHADER -->
+    <script id="shader-fs" type="x-shader/x-fragment">
+        precision mediump float;
+
+        varying vec4 vColor;
+
+        void main(void) {
+            gl_FragColor = vColor;
+        }
+    </script>
+
+    <!-- SETTING UP WEBGL -->
+    <script src="myGL/glSetup.js" type="text/javascript"></script>
+
+    <!-- GL PROCESS (FUN STUFF) -->
+    <script src="myGL/glProcess.js" type="text/javascript"></script>
+</head>
+
+
+<body onload="webGLStart();">
+    <canvas id="lesson01-canvas" style="border: none;" width="500" height="500"></canvas>
+</body>
+
+</html>
