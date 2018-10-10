@@ -56,16 +56,19 @@ function initShaders() {
     if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
         alert("Could not initialise shaders");
     }
+
     gl.useProgram(shaderProgram);
+
     shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
     gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
-    // COLORS EDIT
-    // just pointing GL to the new color attribute
-    shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
-    gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
+    // TEXTURES EDIT
+    // just pointing GL to the new texture coord attribute
+    shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aTextureCoord");
+    gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
 
     shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+    shaderProgram.sampleUniform = gl.getUniformLocation(shaderProgram, "uSampler");
 }
 
 var mvMatrix = mat4.create();
